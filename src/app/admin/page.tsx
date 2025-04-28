@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import styles from "../../styles/admin.module.css"; // ¡ajusta según tu estructura!
-
+import Image from "next/image";
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,13 @@ export default function AdminLogin() {
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginBox}>
-        <img src="/sunsets.png" alt="Sunsets Logo" className={styles.logo} />
+        <Image
+          width={200}
+          height={100}
+          src="/sunsets.png"
+          alt="Sunsets Logo"
+          className={styles.logo}
+        />
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
           <input
@@ -43,7 +49,9 @@ export default function AdminLogin() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className={styles.error}>{error}</p>}
-          <button type="submit" className={styles.button}>Login</button>
+          <button type="submit" className={styles.button}>
+            Login
+          </button>
         </form>
       </div>
     </div>

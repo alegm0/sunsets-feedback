@@ -86,7 +86,7 @@ export default function FeedbackForm() {
         <div className={styles.popupBackdrop}>
           <div className={styles.popupBox}>
             <div className={styles.popupIcon}>✓</div>
-            <p className={styles.popupText}>Feedback sent successfully !</p>
+            <p className={styles.popupText}>{successMessage}</p>
           </div>
         </div>
       )}

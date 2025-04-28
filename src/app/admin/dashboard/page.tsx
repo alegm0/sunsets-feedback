@@ -90,29 +90,13 @@ export default function DashboardPage() {
     ? Math.round((recommendYes / totalFeedbacks) * 100)
     : 0;
 
-  const experienceData = [
-    {
-      level: "Amazing",
-      value: feedbacks.filter((f) => f.experience === "amazing").length,
-    },
-    {
-      level: "Good",
-      value: feedbacks.filter((f) => f.experience === "good").length,
-    },
-    {
-      level: "Okay",
-      value: feedbacks.filter((f) => f.experience === "okay").length,
-    },
-    {
-      level: "Bad",
-      value: feedbacks.filter((f) => f.experience === "bad").length,
-    },
-  ];
+  
 
   const sortedFeedbacks = [...filteredFeedbacks].sort((a, b) => {
     if (!a.timestamp || !b.timestamp) return 0;
-    const aTime = a.timestamp.seconds;
-    const bTime = b.timestamp.seconds;
+    const aTime = (a.timestamp?.seconds ?? 0) as number;
+    const bTime = (b.timestamp?.seconds ?? 0) as number;
+    
     return sortOrder === "asc" ? aTime - bTime : bTime - aTime;
   });
 
@@ -126,7 +110,7 @@ const handleLogout = async () => {
   try {
     await signOut(auth);
     router.push("/admin"); // Te regresa al login
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error al cerrar sesión:", error);
   }
 };
@@ -343,6 +327,9 @@ const handleLogout = async () => {
             <p>
               <strong>Would Recommend:</strong> {feedback.recommend}
             </p>
+            {feedback.staff && (
+  <p><strong>Staff Comment:</strong> {feedback.staff}</p>
+)}
             {feedback.other && (
               <p>
                 <strong>Extra:</strong> {feedback.other}
