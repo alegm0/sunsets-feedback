@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth"; 
 import Image from "next/image"; // Para usar el icono de imagen
+import { Timestamp } from "firebase/firestore";
 import {
   BarChart,
   Bar,
@@ -37,7 +38,7 @@ type Feedback = {
   food: string;
   staff: string;
   other: string;
-  timestamp?: any;
+  timestamp?: Timestamp;
 };
 
 export default function DashboardPage() {

@@ -17,7 +17,7 @@ export default function AdminLogin() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/admin/dashboard");
-    } catch (err: any) {
+    } catch (err) {
       setError("Incorrect credentials. Please try again.");
     }
   };
@@ -25,13 +25,8 @@ export default function AdminLogin() {
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginBox}>
-        <Image
-          width={200}
-          height={100}
-          src="/sunsets.png"
-          alt="Sunsets Logo"
-          className={styles.logo}
-        />
+      <Image   width={200} 
+  height={100}  src="/sunsets.png" alt="Sunsets Logo" className={styles.logo} />
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
           <input
@@ -49,9 +44,7 @@ export default function AdminLogin() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className={styles.error}>{error}</p>}
-          <button type="submit" className={styles.button}>
-            Login
-          </button>
+          <button type="submit" className={styles.button}>Login</button>
         </form>
       </div>
     </div>
